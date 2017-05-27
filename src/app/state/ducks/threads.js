@@ -40,6 +40,7 @@ export function addThreads(threads = []) {
 }
 
 export function addFullThread(chanID, data) {
+  console.log(data.posts.length);
   return {
     type: 'ADD_FULL_THREAD',
     chanID,

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import serialize from 'form-serialize';
-import { withRouter } from 'react-router-dom';
 import NewThreadForm from './NewThreadForm';
 import { createThread } from './../state/ducks/newThread';
 
@@ -27,14 +26,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       // Otherwise, shoot off the createThread action with the URL
       dispatch(createThread(data.url));
-      // ownProps.history.push('/thread/2074175');
     },
   };
 };
 
-const NewThreadFormContainer = withRouter(connect(
+const NewThreadFormContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(NewThreadForm));
+)(NewThreadForm);
 
 export default NewThreadFormContainer;

@@ -3,21 +3,22 @@
  * Index screen for all threads
  */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ThreadThumb from './../modules/ThreadThumb';
 
 const ThreadIndex = ({ threads }) => {
   return (
-    <div>
-      <ul>
-        {Object.keys(threads).map(thread => (
-          <li key={threads[thread].chan_id}>
-            <Link to={`thread/${threads[thread].chan_id}`}>
-              {threads[thread].title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="l-thread-index">
+      {Object.keys(threads).map(thread => (
+        <li key={threads[thread].chan_id}>
+          <ThreadThumb
+            title={threads[thread].title}
+            link={`thread/${threads[thread].chan_id}`}
+            id={threads[thread].chan_id}
+            count={threads[thread].post_count}
+          />
+        </li>
+      ))}
+    </ul>
   );
 };
 

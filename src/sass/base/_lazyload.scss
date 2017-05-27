@@ -1,0 +1,15 @@
+/**
+ * lazyload
+ * Fades in lazy-loaded images
+ * https://github.com/aFarkas/lazysizes
+ */
+
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 300ms;
+}

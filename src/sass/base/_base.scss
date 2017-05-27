@@ -1,0 +1,23 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  @include container();
+  color: palette('text-primary');
+  background: palette('background');
+  font-family: 'worksans', sans-serif;
+}
+
+a {
+  &,
+  &:visited {
+    color: palette('text-primary');
+  }
+}

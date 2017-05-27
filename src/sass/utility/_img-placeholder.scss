@@ -1,0 +1,14 @@
+@mixin img-placeholder($padding) {
+  height: 0;
+  position: relative;
+  padding-bottom: #{$padding};
+  overflow: hidden;
+  display: block;
+
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}

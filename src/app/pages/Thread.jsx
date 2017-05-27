@@ -12,7 +12,7 @@ const Thread = ({ data }) => {
         <ol>
           {data.posts.map(post => (
             <li key={post.post_id}>
-              <img src={data.img_root + post.img} alt="" />
+              <img data-src={data.img_root + post.img} alt="" className="lazyload" />
               {post.body}
             </li>
           ))}

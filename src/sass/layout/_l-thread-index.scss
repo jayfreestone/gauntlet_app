@@ -1,0 +1,13 @@
+/**
+ * l-thread-index
+ * Responsible for laying out an index of thread-thumbs
+ */
+.l-thread-index {
+  @include delist;
+  margin: 0;
+  display: grid;
+  // Has to be 1fr rather than auto,
+  // due to a bug w/ children & intrinsic ratios
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 1rem;
+}
