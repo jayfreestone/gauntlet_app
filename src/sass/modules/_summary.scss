@@ -1,0 +1,44 @@
+/**
+ * summary
+ * A header that summarizes a thread
+ */
+.summary {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas: "img" "snippet" "meta";
+
+  @media (min-width: 30em) {
+    grid-template-columns: 8rem 1fr;
+    grid-template-areas: "img snippet" "img meta";
+  }
+
+  @media (min-width: 40em) {
+    grid-template-columns: 1fr minmax(10rem, 20rem) minmax(20rem, 5fr);
+    grid-template-areas: "meta img snippet";
+  }
+}
+
+.summary__meta {
+  grid-area: meta;
+
+  @media (min-width: 40em) {
+    text-align: right;
+  }
+}
+
+.summary__snippet {
+  grid-area: snippet;
+}
+
+.summary__img {
+  grid-area: img;
+}
+
+.summary__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary__subtitle {
+  font-size: ms(-1);
+}

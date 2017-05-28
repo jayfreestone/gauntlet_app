@@ -1,0 +1,15 @@
+.l-gallery {
+  @include delist;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-rows: 10rem;
+  align-items: center;
+  justify-items: center;
+
+  img {
+    display: block;
+    max-height: 100%;
+    position: relative;
+  }
+}

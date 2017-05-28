@@ -42,6 +42,18 @@ body {
 a, a:visited {
   color: #fff; }
 
+img {
+  max-width: 100%;
+  height: auto; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0; }
+
 /**
  * l-thread-index
  * Responsible for laying out an index of thread-thumbs
@@ -53,6 +65,46 @@ a, a:visited {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 1rem; }
+
+.l-gallery {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-rows: 10rem;
+  align-items: center;
+  justify-items: center; }
+  .l-gallery img {
+    display: block;
+    max-height: 100%;
+    position: relative; }
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  border: 0;
+  appearance: none;
+  background: #e03131;
+  color: #fff;
+  border-radius: 2px;
+  padding: 0.8rem 1rem; }
+
+/**
+ * thumb
+ * A thumbnail, primarily for covers.
+ */
+.thumb {
+  border-radius: 6px; }
+  .thumb:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15); }
 
 /**
  * thread-thumb
@@ -83,18 +135,58 @@ a, a:visited {
   padding-bottom: 120%;
   overflow: hidden;
   display: block;
-  background: #929498;
-  border-radius: 6px; }
+  background: #929498; }
   .thread-thumb__img > img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%; }
-  .thread-thumb__img:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15); }
+
+/**
+ * summary
+ * A header that summarizes a thread
+ */
+.summary {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas: "img" "snippet" "meta"; }
+  @media (min-width: 30em) {
+    .summary {
+      grid-template-columns: 8rem 1fr;
+      grid-template-areas: "img snippet" "img meta"; } }
+  @media (min-width: 40em) {
+    .summary {
+      grid-template-columns: 1fr minmax(10rem, 20rem) minmax(20rem, 5fr);
+      grid-template-areas: "meta img snippet"; } }
+
+.summary__meta {
+  grid-area: meta; }
+  @media (min-width: 40em) {
+    .summary__meta {
+      text-align: right; } }
+
+.summary__snippet {
+  grid-area: snippet; }
+
+.summary__img {
+  grid-area: img; }
+
+.summary__title {
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.summary__subtitle {
+  font-size: 0.66667rem; }
+
+.meta-list {
+  margin: 0; }
+
+.meta-list__title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700; }
+
+.meta-list__info {
+  margin: 0; }
+  .meta-list__info:not(:last-child) {
+    margin-bottom: 1rem; }

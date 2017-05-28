@@ -1,7 +1,8 @@
 $colors: (
   'text-primary': #fff,
   'text-secondary': #929498,
-  'background': #212529
+  'background': #212529,
+  'accent': #e03131
 );
 
 @function palette($key: 'text-primary') {

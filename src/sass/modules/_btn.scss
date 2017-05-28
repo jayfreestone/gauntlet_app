@@ -1,0 +1,9 @@
+.btn {
+  @include caps();
+  border: 0;
+  appearance: none;
+  background: palette('accent');
+  color: palette('text-primary');
+  border-radius: 2px;
+  padding: 0.8rem 1rem;
+}

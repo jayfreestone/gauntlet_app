@@ -9,7 +9,7 @@ import lazySizes from 'lazysizes';
 const ThreadThumb = ({ title, link, id, count }) => {
   return (
     <article className="thread-thumb">
-      <Link to={link} className="thread-thumb__img">
+      <Link to={link} className="thumb thread-thumb__img">
         <img
           data-src="https://gauntlet-images.s3-us-west-1.amazonaws.com/2074175/1494821539152.jpg"
           data-sizes="auto"
