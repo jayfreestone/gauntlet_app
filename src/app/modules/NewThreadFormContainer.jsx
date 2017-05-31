@@ -6,11 +6,11 @@ import { createThread } from './../state/ducks/newThread';
 const mapStateToProps = ({ newThread }) => {
   return {
     isFetching: newThread.isFetching,
-    errors: newThread.errors,
+    errorMessage: newThread.errorMessage,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: (e) => {
       e.preventDefault();

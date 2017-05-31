@@ -2,25 +2,42 @@
  * newThread
  * Responsible for the creation of threads
  */
+
+import { combineReducers } from 'redux';
 import { fetchThread } from './threads';
 
-const initialState = {
-  isFetching: false,
-  errors: [],
-};
+// Action creators
+export function newThreadRequest() {
+  return {
+    type: 'NEW_THREAD_REQUEST',
+  };
+}
 
+export function newThreadFailure(message) {
+  return {
+    type: 'NEW_THREAD_FAILURE',
+    message,
+  };
+}
+
+export function newThreadSuccess() {
+  return {
+    type: 'NEW_THREAD_SUCCESS',
+  };
+}
+
+// Async actions
 export function createThread(url) {
   return dispatch => {
     // Log that we're fetching...
-    dispatch(isFetching(true));
+    dispatch(newThreadRequest());
 
     fetch('http://localhost:8000/thread', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url, }),
-      })
-      .then(resp => resp.json())
-      .then(resp => {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    })
+      .then((resp) => {
         /*
          Throw an error if the request is not good, since
          fetch won't do it for us
@@ -31,51 +48,52 @@ export function createThread(url) {
           return resp;
         }
       })
-      .then(data => {
+      .then(resp => resp.json())
+      .then((data) => {
         // If we've been returned a thread id...
         if (data.thread_id) {
+          dispatch(newThreadSuccess());
           // Fetch the new full thread data
-          dispatch(fetchThread(data.chan_id))
+          dispatch(fetchThread(data.chan_id));
         } else {
           // Otherwise throw an error
           throw new Error(data.message || 'No thread found.');
         }
       })
-      .catch(e => {
+      .catch((e) => {
         // Log the error
-        dispatch(addError(e.message));
-        // Log that the fetch is over
-        dispatch(isFetching(false));
+        dispatch(newThreadFailure(e.message));
       });
   };
 }
 
-export function isFetching(fetching = true) {
-  return {
-    type: 'NEW_THREAD_FETCHING',
-    val: fetching,
-  };
-}
-
-export function addError(error) {
-  return {
-    type: 'NEW_THREAD_FAILURE',
-    message: error,
-  };
-}
-
-export default function reducer(state = initialState, action) {
-  switch(action.type) {
-    case 'NEW_THREAD_FETCHING':
-      return Object.assign({}, state, {
-        isFetching: action.val,
-      });
+// Reducers
+export function isFetching(state = false, action) {
+  switch (action.type) {
+    case 'NEW_THREAD_REQUEST':
+      return true;
+    case 'NEW_THREAD_SUCCESS':
     case 'NEW_THREAD_FAILURE':
-      // Create a new array with the old errors and the new one
-      const errors = [].concat(state.errors, action.message);
-      console.log(errors);
-      return Object.assign({}, state, { errors });
+      return false;
     default:
       return state;
   }
 }
+
+export function errorMessage(state = null, action) {
+  switch (action.type) {
+    case 'NEW_THREAD_REQUEST':
+    case 'NEW_THREAD_SUCCESS':
+      return null;
+    case 'NEW_THREAD_FAILURE':
+      return action.message;
+    default:
+      return state;
+  }
+}
+
+// Exported reducer
+export default combineReducers({
+  errorMessage,
+  isFetching,
+});

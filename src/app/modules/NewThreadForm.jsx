@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewThreadForm = ({ onSubmit, isFetching, errors }) => {
+const NewThreadForm = ({ onSubmit, isFetching, errorMessage }) => {
   return (
     <form action="#" onSubmit={onSubmit}>
       <input
@@ -9,9 +9,7 @@ const NewThreadForm = ({ onSubmit, isFetching, errors }) => {
         placeholder="Enter your Gauntlet URL"
         disabled={isFetching}
       />
-      { errors ? errors.map(error => (
-       <p>{error}</p>
-      )) : '' }
+      { errorMessage || '' }
     </form>
   );
 };
