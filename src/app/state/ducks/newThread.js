@@ -70,7 +70,6 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: action.val,
       });
-      break;
     case 'NEW_THREAD_FAILURE':
       // Create a new array with the old errors and the new one
       const errors = [].concat(state.errors, action.message);

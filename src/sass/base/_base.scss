@@ -5,6 +5,8 @@
 }
 
 html {
+  @include fluid-type(320px, 3000px, 16px, 20px);
+  line-height: 1.3;
   box-sizing: border-box;
 }
 

@@ -13,7 +13,7 @@ const Summary = ({ title, subtitle, summary, meta }) => {
       <div className="summary__snippet">
         <h1 className="summary__title">{title}</h1>
         <span className="summary__subtitle">{subtitle}</span>
-        <div dangerouslySetInnerHTML={{__html: summary}} />
+        <div className="summary__excerpt" dangerouslySetInnerHTML={{__html: summary}} />
         <button className="btn btn--primary">Play now</button>
         <button>Flag as inappropriate</button>
       </div>

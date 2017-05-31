@@ -30,6 +30,11 @@
   grid-area: snippet;
 }
 
+.summary__excerpt {
+  font-size: ms(-1);
+  color: palette('text-secondary');
+}
+
 .summary__img {
   grid-area: img;
 }

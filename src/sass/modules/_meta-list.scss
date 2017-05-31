@@ -1,12 +1,15 @@
 .meta-list {
   margin: 0;
+  font-size: ms(-1);
 }
 
 .meta-list__title {
   @include caps();
+  margin-bottom: ms(-10);
 }
 
 .meta-list__info {
+  color: palette('text-secondary');
   margin: 0;
 
   &:not(:last-child) {

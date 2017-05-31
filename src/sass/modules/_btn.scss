@@ -1,5 +1,6 @@
 .btn {
   @include caps();
+  font-size: ms(-2);
   border: 0;
   appearance: none;
   background: palette('accent');
